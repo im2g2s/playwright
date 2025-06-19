@@ -1,2 +1,4 @@
-playwright install
-pip install pytest
+playwright
+pytest
+pytest-playwright
+cryptography
