@@ -1,20 +1,19 @@
 import requests
-
-from conftest import RunID
+from utils.config import Authorization, testrail_url
 
 
 def update_testrail(case_id, status_id, comment="NA"):
     if status_id == 'PASS':
         add_results_for_cases(case_id, 1, comment)
+        assert True
     else:
         add_results_for_cases(case_id, 5, comment)
+        assert False
 
 
 def add_results_for_cases(testcase_id, testcase_status, comment='NA'):
-    testrail_url = 'https://hhax.testrail.net/index.php?/api/v2/add_results_for_cases/' + RunID
     new_headers = {'Content-type': 'application/json',
-                   'Authorization': 'Basic YXV0b21hdGlvbnFhQGhoYWV4Y2hhbmdlLmNvbTpBdXRvbWF0aW9uQDEy'}
-
+                   'Authorization': Authorization}
     body = {
         "results": [
             {
